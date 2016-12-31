@@ -9,18 +9,19 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { HttpService } from './services/http.service';
+import { LoginRegisterComponent } from './login-register/login-register.component';
 
 const routes:Routes = [
-  {path:'',redirectTo:'login',pathMatch:'full'},
-  {path:'login', component : LoginComponent},
-  {path:'register', component:RegisterComponent}
-  ];
+  {path:'',redirectTo:'login_register',pathMatch:'full'},
+  {path:'login_register',component:LoginRegisterComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
