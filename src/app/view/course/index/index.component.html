@@ -1,0 +1,26 @@
+<nav class="navbar navabar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">云课堂</a>
+  </div>
+
+  <ul class="nav navbar-nav">
+    <li class="active"><a href="#1" data-toggle="tab">课堂</a></li>
+    <li><a href="#2" data-toggle="tab">日程表</a> </li>
+  </ul>
+</nav>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="1">
+    <app-course-list></app-course-list>
+  </div>
+  <div id="2" class="tab-pane">
+    <app-register></app-register>
+  </div>
+</div>
+

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, Headers} from '@angular/http';
+import {Http, URLSearchParams, Headers, Response} from '@angular/http';
 import { Observable, BehaviorSubject} from 'rxjs';
 import 'rxjs/add/operator/toPromise';
 import { environment} from "../../environments/environment";
@@ -11,21 +11,19 @@ export class HttpService {
 
   }
 
-  public login(email:string, password:string){
+  public login(email:string, password:string):Observable<Response>{
     console.log('service login start');
     var body = JSON.stringify({
       'email':email,
       'password':password
     });
-    this.makePost(environment.loginUrl,body)
-      .subscribe(resp=>{
-        console.log(resp.json());
-      });
+    return this.makePost(environment.loginUrl,body);
 
   }
 
   public register(name:string, email:string,
-                  password:string, type:string){
+                  password:string, type:string):Observable<Response>{
+
     console.log('service register start');
     var body = JSON.stringify({
       'name':name,
@@ -33,13 +31,32 @@ export class HttpService {
       'password':password,
       'type':type
     });
-    this.makePost(environment.registerUrl,body)
-      .subscribe(resp=>{
-        console.log(resp.json())
-      });
+
+    return this.makePost(environment.registerUrl,body);
+
   }
 
-  private makePost(url:string, body:any){
+  public getToken():string{
+    return localStorage.getItem("auth_token");
+  }
+
+  public setToken(token:string){
+    localStorage.setItem("auth_token",token);
+  }
+
+  public deleteToken(){
+    localStorage.removeItem("auth_token");
+  }
+
+  public isLoggedIn():boolean{
+    return this.getToken()? true:false;
+  }
+
+  public logout(){
+    this.deleteToken();
+  }
+
+  private makePost(url:string, body:any):Observable<Response>{
     var header = new Headers();
     header.append('Content-Type', 'application/json');
     return this.http.post(url,body,
