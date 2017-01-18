@@ -18,7 +18,21 @@ app.use(function(req, res, next) {
 });
 
 app.use(passport.initialize());
+// app.use('/api/classes/addResource/',multer({
+// 	dest:'../public/resources',
+// 	storage:multer.diskStorage({
+// 		filename:function (req,file,cb){
+// 			var ext = path.extname(file.originalname);
+// 			cb(null,'${Math.random().toString(36).substring(7)}${ext}');
+// 		}
+// 	})
+// }),function (req,res) {
+// 	console.log('hello,world!');
+// });
 app.use('/api',routeApi);
+
+//设置基本环境变量
+app.set('resources',__dirname+'/public/resources');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

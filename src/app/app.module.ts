@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes, Route} from '@angular/router';
+import { NgUploaderModule } from 'ngx-uploader';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './view/login_register/login/login.component';
@@ -22,19 +23,20 @@ const routes:Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    LoginRegisterComponent,
-    IndexComponent,
-    CourseListComponent,
-    CourseListItemComponent
+      AppComponent,
+      LoginComponent,
+      RegisterComponent,
+      LoginRegisterComponent,
+      IndexComponent,
+      CourseListComponent,
+      CourseListItemComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(routes)
+      BrowserModule,
+      FormsModule,
+      HttpModule,
+      NgUploaderModule,
+      RouterModule.forRoot(routes)
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

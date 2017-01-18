@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   loginUrl:'http://localhost:3000/api/login',
-  registerUrl:'http://localhost:3000/api/register'
+  registerUrl:'http://localhost:3000/api/register',
+  addResourceUrl:'http://localhost:3000/api/resource/addResource'
 };

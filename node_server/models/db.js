@@ -9,6 +9,7 @@ require('./class');
 require('./question');
 require('./assignment');
 require('./response');
+require('./resource');
 
 var gracefulShutdown;
 var dbURI = 'mongodb://localhost/cloud_class';

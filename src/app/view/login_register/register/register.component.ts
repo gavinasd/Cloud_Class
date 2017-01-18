@@ -15,10 +15,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form:any):boolean{
-    this.httpService.register(form.name,form.email,form.password,form.type)
+    var type = 0;
+    if(form.type == "teacher"){
+        type = 1;
+    }
+
+    this.httpService.register(form.name,form.email,form.password,type)
         .subscribe((resp)=>{
-          this.httpService.setToken(resp.json().token);
-          this.router.navigate(['']);
+            console.log(resp.json());
+            this.httpService.setToken(resp.json().token);
+            this.router.navigate(['']);
         });
     return false;
   }

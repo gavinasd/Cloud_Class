@@ -38,7 +38,9 @@ var classSchema = new mongoose.Schema({
 	scheduleList:[{type:Schema.Types.ObjectId, ref:'ClassTime'}],
 	
 	//作业列表
-	assignmentList:[{type:Schema.Types.ObjectId, ref:'Assignment'}]
+	assignmentList:[{type:Schema.Types.ObjectId, ref:'Assignment'}],
+	//资源列表
+	resourceList:[{type:Schema.Types.ObjectId, ref:'Resource'}]
 });
 
 classSchema.statics.findByCreator = function (creator, callback) {
@@ -49,5 +51,15 @@ classSchema.statics.addSchedule = function (schedule, callback) {
 	return this.model('Class').find({creator: creator}, callback);
 };
 
+//查询这个userId是不是该班级的老师
+classSchema.methods.isTeacherIn = function (userId) {
+
+	var array = this.teacherList.filter(function (teacherId){
+		return teacherId.toString() == userId.toString();
+	});
+	console.log(array);
+	console.log(array.length);
+	return array.length > 0;
+};
 
 mongoose.model('Class', classSchema);

@@ -1,26 +1,71 @@
-<nav class="navbar navabar-default" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#">云课堂</a>
-  </div>
+<nav class="navbar navbar-default navbar-inverse navbar-static-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">云课堂</a>
+    </div>
 
   <ul class="nav navbar-nav">
     <li class="active"><a href="#1" data-toggle="tab">课堂</a></li>
     <li><a href="#2" data-toggle="tab">日程表</a> </li>
   </ul>
+  </div>
 </nav>
 
-<div class="tab-content">
-  <div class="tab-pane active" id="1">
-    <app-course-list></app-course-list>
-  </div>
-  <div id="2" class="tab-pane">
-    <app-register></app-register>
+<div container>
+  <div class="tab-content">
+    <div class="tab-pane active" id="1">
+      <app-course-list></app-course-list>
+    </div>
+    <div id="2" class="tab-pane">
+      <form role="form" #f="ngForm"
+            (ngSubmit) = "onSubmit(f.value)">
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 id="inputName"
+                 name="name"
+                 placeholder="名称" ngModel>
+        </div>
+
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 id="inputClassId"
+                 name="classId"
+                 placeholder="班级" ngModel>
+        </div>
+
+        <div class="form-group">
+          <input type="text"
+                 class="form-control"
+                 id="inputUser"
+                 name="userId"
+                 placeholder="用户" ngModel>
+        </div>
+
+        <div class="form-group">
+          <input type="file"
+                 ngFileSelect
+                 [options]="options"
+                 [events]="events"
+                 (onUpload)="handleUpload($event)"
+                 class="form-control"
+                 id="inputResource"
+                 name="mResource" ngModel>
+        </div>
+        <p>{{data | json}}</p>
+
+        <button type="submit" class="btn btn-primary">提交</button>
+      </form>
+
+
+    </div>
   </div>
 </div>
 
